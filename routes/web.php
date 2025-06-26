@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\AdminBeritaController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\KesiswaanController;
 use App\Http\Controllers\GaleriController;
@@ -60,5 +61,23 @@ Route::delete('/admin/calon-siswa/{id}', [AdminCalonSiswaController::class, 'des
 // Konfirmasi pendaftaran
 Route::put('/admin/calon-siswa/{id}/konfirmasi', [AdminCalonSiswaController::class, 'konfirmasi'])->name('admin.calon_siswa.konfirmasi');
 Route::get('/admin/kelola-siswa-baru', [App\Http\Controllers\AdminCalonSiswaController::class, 'siswaTerkonfirmasi'])->name('admin.kelola_siswa_baru');
+// galeri
+Route::get('/admin/galeri/foto', [GaleriController::class, 'foto'])->name('galeri.foto');
+Route::get('/admin/galeri/video', [GaleriController::class, 'video'])->name('galeri.video');
+Route::get('/admin/galeri/foto', [GaleriController::class, 'Adminfoto'])->name('admin.galeri.foto');
+Route::get('/admin/galeri/video', [GaleriController::class, 'Adminvideo'])->name('admin.galeri.video');
+
+// Admin kelola Galeri Foto
+Route::get('/admin/galeri/foto/create', [GaleriController::class, 'createFoto'])->name('galeri.create');
+Route::post('/admin/galeri/foto', [GaleriController::class, 'storeFoto'])->name('galeri.store');
+Route::get('/admin/galeri/foto/{id}/edit', [GaleriController::class, 'editFoto'])->name('galeri.edit');
+Route::put('/admin/galeri/foto/{id}', [GaleriController::class, 'updateFoto'])->name('galeri.update');
+Route::delete('/admin/galeri/foto/{id}', [GaleriController::class, 'destroy'])->name('galeri.destroy');
 
 
+Route::get('/admin/berita', [AdminBeritaController::class, 'index'])->name('admin.berita.index');
+Route::get('/admin/berita/create', [AdminBeritaController::class, 'create'])->name('admin.berita.create');
+Route::post('/admin/berita', [AdminBeritaController::class, 'store'])->name('admin.berita.store');
+Route::get('/admin/berita/{berita}/edit', [AdminBeritaController::class, 'edit'])->name('admin.berita.edit');
+Route::put('/admin/berita/{berita}', [AdminBeritaController::class, 'update'])->name('admin.berita.update');
+Route::delete('/admin/berita/{berita}', [AdminBeritaController::class, 'destroy'])->name('admin.berita.destroy');

@@ -18,14 +18,14 @@
       <a href="guru.html" class="pl-4 d-block text-white">Guru</a>
     </div>
   </div>
-  <a href="berita.html"><i class="fas fa-newspaper mr-2"></i> Berita</a>
+  <a href="{{route ('admin.berita.index')}}"><i class="fas fa-newspaper mr-2"></i> Berita</a>
   <div class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#submenu-galeri" aria-expanded="false" aria-controls="submenu-galeri">
       <i class="fas fa-image mr-2"></i> Galeri
     </a>
     <div class="collapse" id="submenu-galeri">
-      <a href="gambar.html" class="pl-4 d-block text-white">Gambar</a>
-      <a href="vidio.html" class="pl-4 d-block text-white">Vidio</a>
+      <a href="{{ route('admin.galeri.foto') }}" class="pl-4 d-block text-white">Kelola Gambar</a>
+      <a href="{{ route('admin.galeri.video') }}" class="pl-4 d-block text-white">Kelola Video</a>
     </div>
   </div>
   <a href="kritik-testimoni.html"><i class="fas fa-comment-dots mr-2"></i> Kritik (Testimoni)</a>
