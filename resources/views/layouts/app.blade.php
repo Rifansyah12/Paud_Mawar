@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- Local CSS (diubah ke format Blade asset) -->
     <link rel="stylesheet" href="{{ asset('css/open-iconic-bootstrap.min.css') }}">

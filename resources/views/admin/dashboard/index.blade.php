@@ -72,9 +72,7 @@
 <body>
   <div class="wrapper">
     <!-- Panggil sidebar dari file terpisah -->
-    @include('admin.layouts.sidebar')
-
-    <!-- Main Content -->
+    @include('admin.layouts.sidebar')   
     <div class="content">
       <h2>Selamat Datang, Admin!</h2>
       <p>Berikut adalah ringkasan data:</p>
@@ -103,7 +101,6 @@
       </div>
     </div>
   </div>
-
   <!-- Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,7 +1,10 @@
 <div class="sidebar">
   <h3>Admin</h3>
-  <a href="#" class="active">
+  <a href="{{ route('dashboard') }}" class="active">
     <i class="fas fa-tachometer-alt mr-2"></i> Beranda
+  </a>
+  <a href="{{ route('admin.calon_siswa.index') }}">
+  <i class="fas fa-child mr-2"></i> Calon Siswa
   </a>
   <div class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#submenu-profile" aria-expanded="false" aria-controls="submenu-profile">
@@ -26,7 +29,9 @@
     </div>
   </div>
   <a href="kritik-testimoni.html"><i class="fas fa-comment-dots mr-2"></i> Kritik (Testimoni)</a>
-  <a href="kelola-pendaftaran.html"><i class="fas fa-file-alt mr-2"></i> Kelola Pendaftaran</a>
+  <a href="{{ route('admin.kelola_siswa_baru') }}">
+    <i class="fas fa-file-alt mr-2"></i> Kelola Siswa Baru
+</a>
     <form action="{{ route('logout') }}" method="POST" style="margin:0; padding:0;">
     @csrf
    <button><i class="fas fa-sign-out-alt mr-2"></i> Logout</button>

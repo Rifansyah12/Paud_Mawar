@@ -21,23 +21,24 @@
           <a href="{{ url('/') }}" class="nav-link pl-0">Home</a>
         </li>
 
-        <li class="nav-item dropdown {{ Request::is('visi-misi','fasilitas','ekstrakulikuler','guru-tendik') ? 'active' : '' }}">
-          <a
-            href="#"
-            class="nav-link dropdown-toggle"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Profile
-          </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="{{ url('visi-misi') }}">Visi dan Misi</a>
-            <a class="dropdown-item" href="{{ url('fasilitas') }}">Fasilitas</a>
-            <a class="dropdown-item" href="{{ url('ekstrakulikuler') }}">Ekstrakulikuler</a>
-            <a class="dropdown-item" href="{{ url('guru-tendik') }}">Guru dan Tendik</a>
-          </div>
-        </li>
+      <li class="nav-item dropdown">
+        <a
+          href="#"
+          class="nav-link dropdown-toggle {{ Request::is('visi-misi','fasilitas','ekstrakulikuler','guru-tendik') ? 'active' : '' }}"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Profile
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item {{ Request::is('visi-misi') ? 'active' : '' }}" href="{{ url('visi-misi') }}">Visi dan Misi</a>
+          <a class="dropdown-item {{ Request::is('fasilitas') ? 'active' : '' }}" href="{{ url('fasilitas') }}">Fasilitas</a>
+          <a class="dropdown-item {{ Request::is('ekstrakulikuler') ? 'active' : '' }}" href="{{ url('ekstrakulikuler') }}">Ekstrakulikuler</a>
+          <a class="dropdown-item {{ Request::is('guru-tendik') ? 'active' : '' }}" href="{{ url('guru-tendik') }}">Guru dan Tendik</a>
+        </div>
+      </li>
+
 
       <li class="nav-item {{ Request::is('berita') ? 'active' : '' }}">
         <a href="{{ url('berita') }}" class="nav-link">Berita</a>
@@ -59,10 +60,11 @@
             Galeri
           </a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="{{ url('foto') }}">Foto</a>
-            <a class="dropdown-item" href="{{ url('video') }}">Video</a>
+            <a class="dropdown-item" href="{{ route('galeri.foto') }}">Foto</a>
+            <a class="dropdown-item" href="{{ route('galeri.video') }}">Video</a>
           </div>
         </li>
+
 
         <li class="nav-item {{ Request::is('kontak') ? 'active' : '' }}">
           <a href="{{ url('kontak') }}" class="nav-link">Kontak</a>
@@ -70,7 +72,7 @@
 
         <li class="nav-item">
           <a
-            href="{{ url('pmb2025') }}"
+            href="{{ route('pendaftaran.index') }}"
             class="nav-link"
             style="
               background-color: #00ffff;
