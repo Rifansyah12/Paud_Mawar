@@ -34,6 +34,10 @@ Route::get('/kesiswaan/{id}', [KesiswaanController::class, 'show'])->name('kesis
     // Galeri
     Route::get('/foto', [GaleriController::class, 'foto'])->name('galeri.foto');
     Route::get('/video', [GaleriController::class, 'video'])->name('galeri.video');
+    // Visi-misi
+    Route::get('/visi-misi', function () {
+    return view('visi-misi');
+});
 
 // Pendaftaran
 // Menampilkan daftar pendaftar
