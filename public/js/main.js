@@ -6,14 +6,14 @@ AOS.init({
 (function ($) {
     "use strict";
 
-    $(window).stellar({
-        responsive: true,
-        parallaxBackgrounds: true,
-        parallaxElements: true,
-        horizontalScrolling: false,
-        hideDistantElements: false,
-        scrollProperty: "scroll",
-    });
+    // $(window).stellar({
+    //     responsive: true,
+    //     parallaxBackgrounds: true,
+    //     parallaxElements: true,
+    //     horizontalScrolling: false,
+    //     hideDistantElements: false,
+    //     scrollProperty: "scroll",
+    // });
 
     var fullHeight = function () {
         $(".js-fullheight").css("height", $(window).height());
@@ -24,6 +24,7 @@ AOS.init({
     fullHeight();
 
     // loader
+    // loader
     var loader = function () {
         setTimeout(function () {
             if ($("#ftco-loader").length > 0) {
@@ -31,7 +32,11 @@ AOS.init({
             }
         }, 1);
     };
-    loader();
+
+    // panggil loader saat halaman benar-benar selesai load
+    $(window).on("load", function () {
+        loader();
+    });
 
     // Scrollax
     $.Scrollax();
