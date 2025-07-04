@@ -24,10 +24,10 @@
       <div class="col-md-6 col-lg-4 ftco-animate">
         <div class="blog-entry">
           <a href="{{ asset('storage/' . $item->file) }}"
-    target="_blank"
-    class="block-20 d-flex align-items-end"
-    style="background-image: url({{ asset('storage/' . $item->file) }});">
-  </a>
+            target="_blank"
+            class="block-20 d-flex align-items-end"
+            style="background-image: url({{ asset('storage/' . $item->file) }});">
+          </a>
           <div class="text bg-white p-4">
             <p>{{ $item->deskripsi }}</p>
           </div>

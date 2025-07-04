@@ -46,7 +46,7 @@
 
 
         <li class="nav-item {{ Request::is('kesiswaan') ? 'active' : '' }}">
-          <a href="{{ url('kesiswaan') }}" class="nav-link">Kesiswaan</a>
+          <a href="{{ url('kesiswaan') }}" class="nav-link">Prestasi</a>
         </li>
 
         <li class="nav-item dropdown {{ Request::is('foto','video') ? 'active' : '' }}">

@@ -32,6 +32,17 @@
 
     <!-- Jika ada section khusus css -->
     @stack('styles')
+    <style>
+    .berita-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .berita-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+    }
+    </style>
+
 </head>
 <body>
        <div class="py-2 bg-primary">
@@ -89,6 +100,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.easing.1.3.js"></script>

@@ -4,51 +4,129 @@
 <div class="container-fluid">
     <h2 class="mb-4">Kelola Berita</h2>
 
-    <a href="#" class="btn btn-primary mb-3">Tambah Berita</a>
+    <!-- Tombol buka modal tambah -->
+    <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#tambahModal">Tambah Berita</button>
 
+    <!-- Modal Tambah -->
+    <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="tambahModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <form action="{{ route('admin.berita.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Tambah Berita</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                  <div class="form-group">
+                      <label>Judul</label>
+                      <input type="text" name="judul" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                      <label>Tanggal</label>
+                      <input type="date" name="tanggal" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                      <label>Isi</label>
+                      <textarea name="isi" class="form-control" rows="4" required></textarea>
+                  </div>
+                  <div class="form-group">
+                      <label>Foto</label>
+                      <input type="file" name="foto" class="form-control-file">
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Table -->
     <div class="card shadow-sm">
         <div class="card-body">
             <div class="table-responsive">
                 <table id="beritaTable" class="table table-bordered table-hover w-100">
                     <thead class="thead-dark">
                         <tr>
-                            <th style="width: 5%;">No</th>
-                            <th style="width: 15%;">Foto</th>
-                            <th style="width: 20%;">Judul</th>
-                            <th style="width: 15%;">Tanggal</th>
-                            <th style="width: 30%;">Isi Penulisan</th>
-                            <th style="width: 15%;">Aksi</th>
+                            <th>No</th>
+                            <th>Foto</th>
+                            <th>Judul</th>
+                            <th>Tanggal</th>
+                            <th>Isi</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Data dummy sementara -->
+                        @foreach ($beritas as $i => $berita)
                         <tr>
-                            <td>1</td>
+                            <td>{{ $i + 1 }}</td>
                             <td>
-                                <img src="https://via.placeholder.com/100" alt="Foto" class="img-thumbnail">
+                                @if($berita->foto)
+                                    <img src="{{ asset('storage/' . $berita->foto) }}" class="img-thumbnail" width="100">
+                                @else
+                                    <img src="https://via.placeholder.com/100" class="img-thumbnail">
+                                @endif
                             </td>
-                            <td>Judul Berita Pertama</td>
-                            <td>2025-06-25</td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</td>
+                            <td>{{ $berita->judul }}</td>
+                            <td>{{ $berita->tanggal }}</td>
+                            <td>{{ Str::limit($berita->isi, 100) }}</td>
                             <td>
-                                <a href="#" class="btn btn-sm btn-warning mb-1">Edit</a>
-                                <button onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-sm btn-danger">Hapus</button>
+                                <!-- Tombol Edit -->
+                                <button class="btn btn-warning btn-sm mb-1" data-toggle="modal" data-target="#editModal{{ $berita->id }}">Edit</button>
+
+                                <!-- Modal Edit -->
+                                <div class="modal fade" id="editModal{{ $berita->id }}" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <form action="{{ route('admin.berita.update', $berita->id) }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Edit Berita</h5>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label>Judul</label>
+                                                        <input type="text" name="judul" class="form-control" value="{{ $berita->judul }}" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Tanggal</label>
+                                                        <input type="date" name="tanggal" class="form-control" value="{{ $berita->tanggal }}" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Isi</label>
+                                                        <textarea name="isi" class="form-control" rows="4" required>{{ $berita->isi }}</textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Foto Baru (Opsional)</label>
+                                                        <input type="file" name="foto" class="form-control-file">
+                                                    </div>
+                                                    @if($berita->foto)
+                                                        <p>Foto saat ini: <img src="{{ asset('storage/' . $berita->foto) }}" width="100"></p>
+                                                    @endif
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <!-- Tombol Hapus -->
+                                <form action="{{ route('admin.berita.destroy', $berita->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Yakin ingin menghapus?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger btn-sm">Hapus</button>
+                                </form>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>
-                                <img src="https://via.placeholder.com/100" alt="Foto" class="img-thumbnail">
-                            </td>
-                            <td>Judul Berita Kedua</td>
-                            <td>2025-06-24</td>
-                            <td>Berita ini berisi informasi terbaru mengenai kegiatan desa...</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-warning mb-1">Edit</a>
-                                <button onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-sm btn-danger">Hapus</button>
-                            </td>
-                        </tr>
-                        <!-- Tambah data dummy lainnya sesuai kebutuhan -->
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -58,45 +136,17 @@
 @endsection
 
 @section('scripts')
-<!-- DataTables CSS & JS -->
+<!-- DataTables -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
 
-<style>
-    div.dataTables_wrapper div.dataTables_scrollBody {
-        max-height: 300px !important;
-    }
-
-    table.dataTable td img {
-        display: block;
-        margin: 0 auto;
-    }
-
-    td {
-        vertical-align: middle !important;
-    }
-</style>
-
 <script>
     $(document).ready(function () {
         $('#beritaTable').DataTable({
-            scrollY: '300px',
             scrollX: true,
-            scrollCollapse: true,
-            paging: true,
-            autoWidth: false,
-            lengthMenu: [[5, 10, 20, 50, 100], [5, 10, 20, 50, 100]],
-            pageLength: 5,
-            columnDefs: [
-                { width: '5%', targets: 0 },
-                { width: '15%', targets: 1 },
-                { width: '20%', targets: 2 },
-                { width: '15%', targets: 3 },
-                { width: '30%', targets: 4 },
-                { width: '15%', targets: 5 }
-            ]
+            pageLength: 5
         });
     });
 </script>

@@ -11,5 +11,10 @@ class KesiswaanController extends Controller
         $Kesiswaans = Kesiswaan::all(); // ambil semua berita
         return view('kesiswaan.index', compact('Kesiswaans'));
     }
+        public function show($id)
+    {
+        $prestasi = Kesiswaan::findOrFail($id);
+        return view('kesiswaan.show', compact('prestasi'));
+    }
 }
 

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\AdminBeritaController;
+use App\Http\Controllers\Admin\AdminKesiswaanController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\KesiswaanController;
 use App\Http\Controllers\GaleriController;
@@ -25,7 +26,11 @@ Route::get('/password/reset', function () {
 
 // User Umum
 Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
+
 Route::get('/kesiswaan', [KesiswaanController::class, 'index'])->name('kesiswaan.index');
+Route::get('/kesiswaan/{id}', [KesiswaanController::class, 'show'])->name('kesiswaan.show');
+
+
     // Galeri
     Route::get('/foto', [GaleriController::class, 'foto'])->name('galeri.foto');
     Route::get('/video', [GaleriController::class, 'video'])->name('galeri.video');
@@ -35,7 +40,7 @@ Route::get('/kesiswaan', [KesiswaanController::class, 'index'])->name('kesiswaan
 Route::get('/pendaftaran', [PendaftaranController::class, 'index'])->name('pendaftaran.index');
 
 // Menampilkan data calis pendaftaran
-Route::get('//admin/calon-siswa', [PendaftaranController::class, 'create'])->name('pendaftaran.index');
+Route::get('//admin/calon-siswa', [PendaftaranController::class, 'create'])->name('pendaftaran.create');
 
 // Menyimpan data pendaftaran
 Route::post('/pendaftaran', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
@@ -81,3 +86,13 @@ Route::post('/admin/berita', [AdminBeritaController::class, 'store'])->name('adm
 Route::get('/admin/berita/{berita}/edit', [AdminBeritaController::class, 'edit'])->name('admin.berita.edit');
 Route::put('/admin/berita/{berita}', [AdminBeritaController::class, 'update'])->name('admin.berita.update');
 Route::delete('/admin/berita/{berita}', [AdminBeritaController::class, 'destroy'])->name('admin.berita.destroy');
+Route::get('/berita/{id}', [BeritaController::class, 'show'])->name('berita.show');
+
+
+// Addmin Kesiswa
+Route::get('/admin/kesiswaan', [AdminKesiswaanController::class, 'index'])->name('admin.kesiswaan.index');
+Route::get('/admin/kesiswaan/create', [AdminKesiswaanController::class, 'create'])->name('admin.kesiswaan.create');
+Route::post('/admin/kesiswaan', [AdminKesiswaanController::class, 'store'])->name('admin.kesiswaan.store');
+Route::get('/admin/kesiswaan/{id}/edit', [AdminKesiswaanController::class, 'edit'])->name('admin.kesiswaan.edit');
+Route::put('/admin/kesiswaan/{id}', [AdminKesiswaanController::class, 'update'])->name('admin.kesiswaan.update');
+Route::delete('/admin/kesiswaan/{id}', [AdminKesiswaanController::class, 'destroy'])->name('admin.kesiswaan.destroy');

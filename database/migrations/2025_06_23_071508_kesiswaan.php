@@ -12,12 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kesiswaans', function (Blueprint $table) {
-            $table->id();
-            $table->string('judul'); // misal judul konten
-            $table->text('deskripsi')->nullable();
-            $table->string('gambar')->nullable(); // jika ada gambar
-            $table->timestamps();
-        });
+               $table->id();
+                $table->string('nama_prestasi');
+                $table->string('tingkat');
+                $table->text('deskripsi')->nullable();
+                $table->year('tahun');
+                $table->string('gambar')->nullable();
+                $table->timestamps();
+            });
     }
 
 

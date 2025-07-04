@@ -19,6 +19,9 @@
     </div>
   </div>
   <a href="{{route ('admin.berita.index')}}"><i class="fas fa-newspaper mr-2"></i> Berita</a>
+    <a href="{{ route('admin.kesiswaan.index') }}">
+    <i class="fas fa-award mr-2"></i> Prestasi
+  </a>
   <div class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#submenu-galeri" aria-expanded="false" aria-controls="submenu-galeri">
       <i class="fas fa-image mr-2"></i> Galeri

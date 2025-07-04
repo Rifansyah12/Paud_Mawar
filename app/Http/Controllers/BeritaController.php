@@ -11,5 +11,11 @@ class BeritaController extends Controller
         $beritas = Berita::all(); // ambil semua berita
         return view('berita.index', compact('beritas'));
     }
+    public function show($id)
+    {
+        $beritas = Berita::findOrFail($id);
+        return view('berita.show', compact('beritas'));
+    }
+    
 }
 

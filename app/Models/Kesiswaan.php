@@ -9,6 +9,15 @@ class Kesiswaan extends Model
 {
     use HasFactory;
 
-    // Jika table bukan 'beritas', bisa di-set disini:
-    // protected $table = 'nama_table_berita';
+    // Nama tabel jika tidak mengikuti konvensi jamak Laravel (tidak wajib di sini karena "kesiswaans" sudah sesuai)
+    protected $table = 'kesiswaans';
+
+    // Kolom yang boleh diisi secara massal
+    protected $fillable = [
+        'nama_prestasi',
+        'tingkat',
+        'deskripsi',
+        'tahun',
+        'gambar',
+    ];
 }
