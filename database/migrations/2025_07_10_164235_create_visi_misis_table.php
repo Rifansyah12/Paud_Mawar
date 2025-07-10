@@ -10,20 +10,21 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up()
-{
-    Schema::create('beritas', function (Blueprint $table) {
-        $table->id();
-        $table->string('judul');
-        $table->text('isi');
-        $table->timestamps();
-    });
-}
+    {
+        Schema::create('visi_misis', function (Blueprint $table) {
+            $table->id();
+            $table->text('visi');
+            $table->text('misi');
+            $table->timestamps();
+        });
+    }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('beritas');
+        Schema::dropIfExists('visi_misis');
     }
 };

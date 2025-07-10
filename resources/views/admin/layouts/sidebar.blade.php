@@ -12,10 +12,10 @@
     </a>
     <div class="collapse" id="submenu-profile">
       <a href="tentang-kami.html" class="pl-4 d-block text-white">Tentang Kami</a>
-      <a href="visi-misi.html" class="pl-4 d-block text-white">Visi Misi</a>
-      <a href="fasilitas.html" class="pl-4 d-block text-white">Fasilitas</a>
-      <a href="ekstrakulikuler.html" class="pl-4 d-block text-white">Ekstra Kulikuler</a>
-      <a href="guru.html" class="pl-4 d-block text-white">Guru</a>
+      <a href="{{ route('admin.visimisi.index') }}" class="pl-4 d-block text-white">Visi Misi</a>
+      <a href="{{ route('admin.fasilitas.index') }}" class="pl-4 d-block text-white">Fasilitas</a>
+      <a href="{{ route('admin.ekstrakulikuler.index') }}" class="pl-4 d-block text-white">Ekstra Kulikuler</a>
+      <a href="{{ route('admin.gurutendik.index') }}" class="pl-4 d-block text-white">Guru</a>
     </div>
   </div>
   <a href="{{route ('admin.berita.index')}}"><i class="fas fa-newspaper mr-2"></i> Berita</a>

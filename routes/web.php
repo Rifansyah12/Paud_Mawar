@@ -4,11 +4,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\AdminBeritaController;
 use App\Http\Controllers\Admin\AdminKesiswaanController;
+use App\Http\Controllers\Admin\AdminGurutendikController;
+use App\Http\Controllers\Admin\AdminEkstrakulikulerController;
+use App\Http\Controllers\Admin\AdminFasilitasController;
+use App\Http\Controllers\Admin\AdminVisimisController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\KesiswaanController;
 use App\Http\Controllers\GaleriController;
-use App\Http\Controllers\AdminCalonSiswaController;
 use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\AdminCalonSiswaController;
+use App\Http\Controllers\VisimisiController;
+
+
+
 
 
 Route::get('/', function () {
@@ -35,9 +43,15 @@ Route::get('/kesiswaan/{id}', [KesiswaanController::class, 'show'])->name('kesis
     Route::get('/foto', [GaleriController::class, 'foto'])->name('galeri.foto');
     Route::get('/video', [GaleriController::class, 'video'])->name('galeri.video');
     // Visi-misi
-    Route::get('/visi-misi', function () {
-    return view('visi-misi');
-});
+    Route::get('/visi-misi', [VisimisiController::class, 'show']);
+    Route::get('/fasilitas', function () {
+        return view('fasilitas');
+    });
+    Route::get('/ekstrakulikuler', function () {
+        return view('ekstrakulikuler');
+    });Route::get('/guru-tendik', function () {
+        return view('guru-tendik');
+    });
 
 // Pendaftaran
 // Menampilkan daftar pendaftar
@@ -48,6 +62,10 @@ Route::get('//admin/calon-siswa', [PendaftaranController::class, 'create'])->nam
 
 // Menyimpan data pendaftaran
 Route::post('/pendaftaran', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
+Route::get('/pendaftaran/unduh/{id}', [PendaftaranController::class, 'unduhFormulir'])->name('pendaftaran.unduh');
+Route::get('/pendaftaran/berhasil/{id}', [PendaftaranController::class, 'berhasil'])->name('pendaftaran.berhasil');
+
+
 
 // Halaman edit pendaftaran
 // Route::get('/pendaftaran/{id}/edit', [PendaftaranController::class, 'edit'])->name('pendaftaran.edit');
@@ -100,3 +118,27 @@ Route::post('/admin/kesiswaan', [AdminKesiswaanController::class, 'store'])->nam
 Route::get('/admin/kesiswaan/{id}/edit', [AdminKesiswaanController::class, 'edit'])->name('admin.kesiswaan.edit');
 Route::put('/admin/kesiswaan/{id}', [AdminKesiswaanController::class, 'update'])->name('admin.kesiswaan.update');
 Route::delete('/admin/kesiswaan/{id}', [AdminKesiswaanController::class, 'destroy'])->name('admin.kesiswaan.destroy');
+
+// // AdminKontent
+// Route::get('/admin/visimisi', function () {
+//     return view('admin.visimisi.index');
+// })->name('admin.visimisi');
+// Route::get('/admin/fasilitas', function () {
+//     return view('admin.fasilitas.index');
+// })->name('admin.fasilitas');
+// Route::get('/admin/ekstrakulikuler', function () {
+//     return view('admin.ekstrakulikuler.index');
+// })->name('admin.ekstrakulikuler');
+// Route::get('/admin/gurutendik', function () {
+//     return view('admin.gurutendik.index');
+// })->name('admin.gurutendik');
+// Untuk pengunjung
+Route::get('/visimisi', [VisiMisiController::class, 'show']);
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('visimisi', AdminVisimisController::class);
+    Route::resource('fasilitas', AdminFasilitasController::class);
+    Route::resource('ekstrakulikuler', AdminEkstrakulikulerController::class);
+    Route::resource('gurutendik', AdminGurutendikController::class);
+});

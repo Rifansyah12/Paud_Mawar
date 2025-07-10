@@ -25,7 +25,9 @@
          <div class="card shadow-lg border-0 rounded-lg">
           <div class="card-body px-4 py-5">
             <h2 class="mb-4">Visi Kami</h2>
-            <p class="lead">Menjadi lembaga pendidikan unggulan yang mencetak generasi cerdas, berkarakter, dan berakhlak mulia melalui proses pembelajaran yang berkualitas dan inklusif.</p>
+            <p class="lead">
+             {{ $data->visi ?? 'Visi belum tersedia.' }}  
+            </p>
           </div>
          </div>
         </div>
@@ -36,23 +38,21 @@
         <div class="card shadow-lg border-0 rounded-lg">
           <div class="card-body px-4 py-5">
             <h3 class="mb-4 text-center">Misi Kami</h3>
+             @php
+              $misiList = isset($data->misi) ? explode("\n", $data->misi) : [];
+            @endphp
             <ul class="list-unstyled pl-md-3">
+              @forelse ($misiList as $misi)
               <li class="mb-3 d-flex">
                 <span class="mr-3 text-primary"><i class="icon-check-circle"></i></span>
-                <span>Menyelenggarakan pendidikan yang berbasis nilai keagamaan, kebangsaan, dan kecerdasan abad 21.</span>
+                <span>{{ $misi }}</span>
               </li>
+              @empty
               <li class="mb-3 d-flex">
-                <span class="mr-3 text-primary"><i class="icon-check-circle"></i></span>
-                <span>Mengembangkan potensi peserta didik melalui kegiatan akademik dan non-akademik yang kreatif dan inovatif.</span>
+                <span class="mr-3 text-danger"><i class="icon-x-circle"></i></span>
+                <span>Misi belum tersedia.</span>
               </li>
-              <li class="mb-3 d-flex">
-                <span class="mr-3 text-primary"><i class="icon-check-circle"></i></span>
-                <span>Menciptakan lingkungan belajar yang aman, nyaman, dan menyenangkan bagi seluruh warga sekolah.</span>
-              </li>
-              <li class="mb-3 d-flex">
-                <span class="mr-3 text-primary"><i class="icon-check-circle"></i></span>
-                <span>Menjalin kemitraan dengan orang tua, masyarakat, dan lembaga lain untuk mendukung kemajuan pendidikan.</span>
-              </li>
+              @endforelse
             </ul>
           </div>
         </div>

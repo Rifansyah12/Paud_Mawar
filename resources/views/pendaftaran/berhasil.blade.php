@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pendaftaran Berhasil - PAUD Ceria</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @keyframes confetti {
@@ -92,36 +93,42 @@
                 <i class="fab fa-whatsapp text-2xl mr-3"></i> 
                 <span class="text-lg">Hubungi Admin via WhatsApp</span>
             </a>
-            
+            <!-- Unduh -->
+            <a  href="{{ route('pendaftaran.unduh', $id) }}" class="inline-flex items-center justify-center px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl mb-6">
+                <i class="fas fa-download text-2xl mr-3"></i> 
+                <span class="text-lg">Unduh Data Diri</span>
+            </a>
             <div class="bg-blue-50 rounded-lg p-4 mb-6">
                 <p class="text-sm text-blue-600 font-medium">
                     <i class="fas fa-info-circle mr-2"></i>
                     Pastikan nomor WhatsApp Anda aktif untuk memudahkan konfirmasi.
                 </p>
             </div>
- <div class="border-t pt-6">
+            <div class="border-t pt-6">
                 <h3 class="text-lg font-semibold text-gray-700 mb-4">Proses Selanjutnya</h3>
                 <div class="space-y-4">
-                    <div class="flex items-start">
-                        <div class="bg-blue-100 w-8 h-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                            <span class="text-blue-600 font-bold">1</span>
-                        </div>
-                        <div class="text-left">
-                            <h4 class="font-medium text-gray-800">Verifikasi Data</h4>
-                            <p class="text-gray-600 text-sm">Admin akan menghubungi Anda dalam 1×24 jam</p>
-                        </div>
+                    <!-- LANGKAH 1 -->
+                    <div class="flex items-start mb-4">
+                    <div class="bg-green-100 w-8 h-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                        <span class="text-green-600 font-bold">1</span>
                     </div>
-                    <div class="flex items-start">
-                        <div class="bg-purple-100 w-8 h-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                            <span class="text-purple-600 font-bold">2</span>
-                        </div>
-<div class="text-left">
-                            <h4 class="font-medium text-gray-800">Pembayaran & Dokumen</h4>
-                            <p class="text-gray-600 text-sm">Lengkapi administrasi dengan petunjuk dari admin</p>
-                        </div>
+                    <div class="text-left">
+                        <h4 class="font-medium text-gray-800">Verifikasi Data</h4>
+                        <p class="text-gray-600 text-sm">Admin akan menghubungi Anda dalam 1×24 jam</p>
+                    </div>
+                    </div>
+
+                    <!-- LANGKAH 2 -->
+                    <div class="flex items-start mb-4">
+                    <div class="bg-yellow-100 w-8 h-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                        <span class="text-yellow-600 font-bold">2</span>
+                    </div>
+                    <div class="text-left">
+                        <h4 class="font-medium text-gray-800">Pembayaran & Dokumen</h4>
+                        <p class="text-gray-600 text-sm">Lengkapi administrasi dengan petunjuk dari admin</p>
+                    </div>
                     </div>
                 </div>
-            </div>
             <!-- Tombol Kembali ke Halaman Utama -->
             <a href="{{ url('/') }}" class="inline-flex items-center justify-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold rounded-full shadow-md transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg mt-4">
                 <i class="fas fa-home mr-2 text-xs"></i>Kembali ke Halaman Utama
