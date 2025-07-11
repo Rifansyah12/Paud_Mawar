@@ -14,10 +14,7 @@ use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\AdminCalonSiswaController;
 use App\Http\Controllers\VisimisiController;
-
-
-
-
+use App\Models\Pendaftaran;
 
 Route::get('/', function () {
     return view('welcome');
@@ -56,9 +53,13 @@ Route::get('/kesiswaan/{id}', [KesiswaanController::class, 'show'])->name('kesis
 // Pendaftaran
 // Menampilkan daftar pendaftar
 Route::get('/pendaftaran', [PendaftaranController::class, 'index'])->name('pendaftaran.index');
+Route::put('/admin/calon-siswa/{id}', [PendaftaranController::class, 'update'])->name('admin.calon_siswa.update');
+
 
 // Menampilkan data calis pendaftaran
 Route::get('//admin/calon-siswa', [PendaftaranController::class, 'create'])->name('pendaftaran.create');
+Route::get('/admin/calon-siswa/export', [PendaftaranController::class, 'export'])->name('admin.calon_siswa.export');
+
 
 // Menyimpan data pendaftaran
 Route::post('/pendaftaran', [PendaftaranController::class, 'store'])->name('pendaftaran.store');

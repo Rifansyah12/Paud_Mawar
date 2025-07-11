@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\CalonSiswaExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Pendaftaran;
 
 class PendaftaranController extends Controller
@@ -90,4 +92,26 @@ class PendaftaranController extends Controller
         $pdf = Pdf::loadView('pendaftaran.formulir_pdf', compact('data'));
         return $pdf->download('formulir-pendaftaran-' . $data->nama_lengkap . '.pdf');
     }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'nama_lengkap' => 'required|string|max:255',
+            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
+            'tanggal_lahir' => 'required|date',
+            // Tambah validasi lain jika perlu
+        ]);
+
+        $pendaftaran = Pendaftaran::findOrFail($id);
+        $pendaftaran->update($validated);
+
+        return redirect()->back()->with('success', 'Data berhasil diperbarui.');
+    }
+
+    public function export()
+    {
+        return Excel::download(new CalonSiswaExport, 'data_siswa.xlsx');
+    }
+
+
 }
