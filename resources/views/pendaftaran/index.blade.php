@@ -16,95 +16,292 @@
     </section>
 
     <!-- Form -->
-     <section class="ftco-section">
-        <div class="container">
-            <h2 class="mb-4 text-center">Form Pendaftaran</h2>
+    <section class="ftco-section">
+    <div class="container">
+        <h2 class="mb-4 text-center">Form Pendaftaran</h2>
 
-            @if(session('success'))
-            <div class="alert alert-success text-center">
-                {{ session('success') }}
-            </div>
-            @else
+        {{-- Notifikasi Sukses --}}
+        @if(session('success'))
+        <div class="alert alert-success text-center">
+            {{ session('success') }}
+        </div>
+        @endif
 
-            <form action="{{ route('pendaftaran.store') }}" method="POST">
+        {{-- Notifikasi Error --}}
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
+        <form action="{{ route('pendaftaran.store') }}" method="POST">
             @csrf
             <div class="row">
+                {{-- DATA CALON SISWA --}}
                 <div class="col-md-6">
-                <div class="form-group">
-                    <label>NIK</label>
-                    <input type="text" name="nik" class="form-control" required maxlength="16">
-                </div>
-                <div class="form-group">
-                    <label>Nama</label>
-                    <input type="text" name="nama" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label>Umur</label>
-                    <input type="number" name="umur" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label>Jenis Kelamin</label>
-                    <select name="jenis_kelamin" class="form-control" required>
-                    <option value="">Pilih</option>
-                    <option value="Laki-laki">Laki-laki</option>
-                    <option value="Perempuan">Perempuan</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Jumlah Saudara</label>
-                    <input type="number" name="jumlah_saudara" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label>Anak ke-</label>
-                    <input type="number" name="anak_ke" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label>Negara</label>
-                    <input type="text" name="negara" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label>Agama</label>
-                    <input type="text" name="agama" class="form-control" required>
-                </div>
+                    <h5>Data Calon Siswa</h5>
+
+                    <div class="form-group">
+                        <label>Tanggal Daftar</label>
+                        <input type="date" name="tanggal_daftar" class="form-control" value="{{ \Carbon\Carbon::now()->toDateString() }}" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" name="nama_lengkap" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jenis Kelamin</label>
+                        <select name="jenis_kelamin" class="form-control" required>
+                            <option value="">-- Pilih --</option>
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>NISN</label>
+                        <input type="text" name="nisn" class="form-control" maxlength="10" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>NIK</label>
+                        <input type="text" name="nik" class="form-control" maxlength="16" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tempat Lahir</label>
+                        <input type="text" name="tempat_lahir" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tanggal Lahir</label>
+                        <input type="date" name="tanggal_lahir" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Agama</label>
+                        <input type="text" name="agama" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Berkebutuhan Khusus</label>
+                        <input type="text" name="berkebutuhan_khusus" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jumlah Saudara</label>
+                        <input type="number" name="jumlah_saudara" class="form-control" required>
+                    </div>
                 </div>
 
+                {{-- ALAMAT & KONTAK --}}
                 <div class="col-md-6">
-                <div class="form-group">
-                    <label>Tinggal Bersama</label>
-                    <input type="text" name="tinggal_bersama" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label>Alamat</label>
-                    <textarea name="alamat" class="form-control" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Tinggi Badan (cm)</label>
-                    <input type="number" name="tinggi_badan" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label>Berat Badan (kg)</label>
-                    <input type="number" name="berat_badan" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label>Jarak Tempuh ke Sekolah (km)</label>
-                    <input type="number" name="jaraktempuh" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label>Nama Ayah</label>
-                    <input type="text" name="nama_ayah" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label>Nama Ibu</label>
-                    <input type="text" name="nama_ibu" class="form-control" required>
-                </div>
+                    <h5>Alamat & Kontak</h5>
+
+                    <div class="form-group">
+                        <label>Dusun</label>
+                        <input type="text" name="dusun" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Desa/Kelurahan</label>
+                        <input type="text" name="desa" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kode Pos</label>
+                        <input type="text" name="kode_pos" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kecamatan</label>
+                        <input type="text" name="kecamatan" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kabupaten/Kota</label>
+                        <input type="text" name="kab_kota" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Provinsi</label>
+                        <input type="text" name="provinsi" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Alat Transportasi ke Sekolah</label>
+                        <select name="alat_transportasi" class="form-control" required>
+                            <option value="">-- Pilih --</option>
+                            <option>Jalan Kaki</option>
+                            <option>Kendaraan Pribadi</option>
+                            <option>Angkutan Umum/Bus</option>
+                            <option>Mobil/Bus Jemputan</option>
+                            <option>Kereta Api</option>
+                            <option>Ojek</option>
+                            <option>Andong</option>
+                            <option>Mobil Pribadi</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jenis Tinggal</label>
+                        <select name="jenis_tinggal" class="form-control" required>
+                            <option value="">-- Pilih --</option>
+                            <option>Bersama Orang Tua</option>
+                            <option>Wali</option>
+                            <option>Kost</option>
+                            <option>Asrama</option>
+                            <option>Panti Asuhan</option>
+                            <option>Lainnya</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>No. Telp Rumah</label>
+                        <input type="text" name="no_telp_rumah" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>No. HP</label>
+                        <input type="text" name="no_hp" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control">
+                    </div>
                 </div>
 
+                {{-- DATA PERIODIK --}}
+                <div class="col-md-12 mt-4">
+                    <h5>Data Periodik Calon Siswa</h5>
+
+                    <div class="form-group">
+                        <label>Tinggi Badan (cm)</label>
+                        <input type="number" name="tinggi_badan" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Berat Badan (kg)</label>
+                        <input type="number" name="berat_badan" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jarak ke Sekolah (km)</label>
+                        <input type="number" name="jarak_ke_sekolah" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Waktu Tempuh ke Sekolah (menit)</label>
+                        <input type="number" name="waktu_tempuh_ke_sekolah" class="form-control" required>
+                    </div>
+                </div>
+
+                {{-- DATA AYAH --}}
+                <div class="col-md-6 mt-4">
+                    <h5>Data Ayah <span class="text-danger">(Wajib Diisi)</span></h5>
+
+                    <div class="form-group">
+                        <label>NIK Ayah</label>
+                        <input type="text" name="nik_ayah" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nama Ayah</label>
+                        <input type="text" name="nama_ayah" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tahun Lahir Ayah</label>
+                        <input type="text" name="tahun_lahir_ayah" class="form-control" required maxlength="4">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pekerjaan Ayah</label>
+                        <select name="pekerjaan_ayah" class="form-control" required>
+                            <option value="">-- Pilih --</option>
+                            <option>Tidak Bekerja</option>
+                            <option>Nelayan</option>
+                            <option>Petani</option>
+                            <option>Peternak</option>
+                            <option>PNS/TNI/Polri</option>
+                            <option>Karyawan Swasta</option>
+                            <option>Wiraswasta</option>
+                            <option>Wirausaha</option>
+                            <option>Buruh</option>
+                            <option>Lainnya</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pendidikan Ayah</label>
+                        <input type="text" name="pendidikan_ayah" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Penghasilan Ayah</label>
+                        <input type="text" name="penghasilan_ayah" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Berkebutuhan Khusus Ayah</label>
+                        <input type="text" name="berkebutuhan_khusus_ayah" class="form-control">
+                    </div>
+                </div>
+
+                {{-- DATA IBU --}}
+                <div class="col-md-6 mt-4">
+                    <h5>Data Ibu <span class="text-danger">(Wajib Diisi)</span></h5>
+
+                    <div class="form-group">
+                        <label>NIK Ibu</label>
+                        <input type="text" name="nik_ibu" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nama Ibu</label>
+                        <input type="text" name="nama_ibu" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tahun Lahir Ibu</label>
+                        <input type="text" name="tahun_lahir_ibu" class="form-control" required maxlength="4">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pekerjaan Ibu</label>
+                        <input type="text" name="pekerjaan_ibu" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pendidikan Ibu</label>
+                        <input type="text" name="pendidikan_ibu" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Penghasilan Ibu</label>
+                        <input type="text" name="penghasilan_ibu" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Berkebutuhan Khusus Ibu</label>
+                        <input type="text" name="berkebutuhan_khusus_ibu" class="form-control">
+                    </div>
+                </div>
+
+                {{-- SUBMIT --}}
                 <div class="col-md-12 text-center mt-4">
-                <button type="submit" class="btn btn-primary px-5 py-2">Kirim Pendaftaran</button>
+                    <button type="submit" class="btn btn-primary px-5 py-2">Kirim Pendaftaran</button>
                 </div>
             </div>
-            </form>
-             @endif
-        </div>
-    </section>
+        </form>
+    </div>
+</section>
+
 @endsection
