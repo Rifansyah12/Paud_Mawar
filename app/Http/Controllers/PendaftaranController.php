@@ -74,7 +74,25 @@ class PendaftaranController extends Controller
             'pekerjaan_ibu' => 'required|string|max:100',
             'pendidikan_ibu' => 'required|string|max:100',
             'penghasilan_ibu' => 'required|string|max:100',
+
+            // Upload document
+            'foto_ktp' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'foto_kk' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'foto_akte' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+
         ]);
+        
+        if ($request->hasFile('foto_ktp')) {
+            $validated['foto_ktp'] = $request->file('foto_ktp')->store('uploads/ktp', 'public');
+        }
+
+        if ($request->hasFile('foto_kk')) {
+            $validated['foto_kk'] = $request->file('foto_kk')->store('uploads/kk', 'public');
+        }
+
+        if ($request->hasFile('foto_akte')) {
+            $validated['foto_akte'] = $request->file('foto_akte')->store('uploads/akte', 'public');
+        }
 
         $pendaftaran = Pendaftaran::create($validated);
 

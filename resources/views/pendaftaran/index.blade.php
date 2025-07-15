@@ -38,7 +38,7 @@
         </div>
         @endif
 
-        <form action="{{ route('pendaftaran.store') }}" method="POST">
+        <form action="{{ route('pendaftaran.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 {{-- DATA CALON SISWA --}}
@@ -462,6 +462,26 @@
                         <input type="text" name="keterangan_khusus_ibu" id="keterangan_khusus_ibu" class="form-control">
                     </div>
                 </div>
+
+                <!-- Upload document -->
+                 <div class="form-group">
+                    <label>Upload Foto KTP Orangtua</label>
+                    <input type="file" name="foto_ktp" accept="image/*">
+                    @error('foto_ktp') <small class="text-danger">{{ $message }}</small> @enderror
+                </div>
+
+                <div class="form-group">
+                    <label>Upload Foto KK</label>
+                    <input type="file" name="foto_kk" accept="image/*">
+                    @error('foto_kk') <small class="text-danger">{{ $message }}</small> @enderror
+                </div>
+
+                <div class="form-group">
+                    <label>Upload Foto Akte Kelahiran</label>
+                    <input type="file" name="foto_akte" accept="image/*">
+                    @error('foto_akte') <small class="text-danger">{{ $message }}</small> @enderror
+                </div>
+
 
                 {{-- SUBMIT --}}
                 <div class="col-md-12 text-center mt-4">

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-    use App\Models\Fasilitas    ;
+use App\Models\Fasilitas;
 
 
 class FasilitasController extends Controller
@@ -14,6 +14,6 @@ public function show()
         $data = Fasilitas::first();
 
         // Arahkan ke resources/views/visimisi.blade.php
-        return view('guru-tendik', compact('data'));
+        return view('fasilitas', compact('data'));
     }
 }

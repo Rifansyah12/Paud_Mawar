@@ -60,5 +60,10 @@ class Pendaftaran extends Model
         'pekerjaan_ibu',
         'pendidikan_ibu',
         'penghasilan_ibu',
+
+        // Upload documen
+        'foto_ktp',
+        'foto_kk',
+        'foto_akte',
     ];
 }

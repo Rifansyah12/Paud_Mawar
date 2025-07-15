@@ -48,8 +48,16 @@ class CalonSiswaExport implements FromCollection, WithHeadings
             'berkebutuhan_khusus_ibu',
             'pekerjaan_ibu',
             'pendidikan_ibu',
-            'penghasilan_ibu'
-        )->get();
+            'penghasilan_ibu',
+            'foto_ktp',
+            'foto_kk',
+            'foto_akte'
+        )->get()->map(function ($item) {
+            $item->foto_ktp = $item->foto_ktp ? asset('storage/' . $item->foto_ktp) : '-';
+            $item->foto_kk = $item->foto_kk ? asset('storage/' . $item->foto_kk) : '-';
+            $item->foto_akte = $item->foto_akte ? asset('storage/' . $item->foto_akte) : '-';
+            return $item;
+        });
     }
 
     public function headings(): array
@@ -93,7 +101,10 @@ class CalonSiswaExport implements FromCollection, WithHeadings
             'Berkebutuhan Khusus Ibu',
             'Pekerjaan Ibu',
             'Pendidikan Ibu',
-            'Penghasilan Ibu'
+            'Penghasilan Ibu',
+            'Foto KTP',
+            'Foto KK',
+            'Foto Akte'
         ];
     }
 }

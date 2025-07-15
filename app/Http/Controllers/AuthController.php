@@ -17,13 +17,22 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('/dashboard');
+            $user = Auth::user();
+
+            // Redirect sesuai role
+            return match ($user->role) {
+                'admin' => redirect()->intended('/admin/dashboard'),
+                'pengelola' => redirect()->intended('/pengelola/dashboard'),
+                default => abort(403, 'Role tidak dikenali'),
+            };
         }
 
         return back()->withErrors([
             'email' => 'Email atau password salah.',
         ]);
     }
+
+
 
     public function logout()
     {

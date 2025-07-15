@@ -15,6 +15,13 @@ use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\AdminCalonSiswaController;
 use App\Http\Controllers\VisimisiController;
 use App\Models\Pendaftaran;
+use App\Http\Middleware\RoleMiddleware;
+
+
+use App\Http\Controllers\Pengelola\CalonSiswaController;
+use App\Http\Controllers\Pengelola\DataSiswaBaruController;
+use App\Http\Controllers\Pengelola\DataKelasController;
+use App\Http\Controllers\Pengelola\LaporanController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -142,4 +149,26 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('fasilitas', AdminFasilitasController::class);
     Route::resource('ekstrakulikuler', AdminEkstrakulikulerController::class);
     Route::resource('gurutendik', AdminGurutendikController::class);
+});
+
+// Role Actor
+Route::middleware(['auth', RoleMiddleware::class . ':admin'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard.index');
+    });
+});
+
+Route::middleware(['auth', RoleMiddleware::class . ':pengelola'])->group(function () {
+    Route::get('/pengelola/dashboard', function () {
+        return view('pengelola.dashboard.index');
+    });
+});
+
+
+
+Route::middleware(['web', 'auth', RoleMiddleware::class.':pengelola'])->prefix('pengelola')->group(function () {
+    Route::get('/calon_siswa', [CalonSiswaController::class, 'index'])->name('pengelola.calon_siswa');
+    Route::get('/data_siswa_baru', [DataSiswaBaruController::class, 'index'])->name('pengelola.data_siswa_baru');
+    Route::get('/data_kelas', [DataKelasController::class, 'index'])->name('pengelola.data_kelas');
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('pengelola.laporan');
 });

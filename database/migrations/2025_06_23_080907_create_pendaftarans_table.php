@@ -61,6 +61,11 @@ return new class extends Migration
             $table->string('pendidikan_ibu');
             $table->string('penghasilan_ibu');
 
+            // Upload gambar dokumen
+            $table->string('foto_ktp')->nullable();
+            $table->string('foto_kk')->nullable();
+            $table->string('foto_akte')->nullable();
+            
             $table->timestamps();
         });
     }
