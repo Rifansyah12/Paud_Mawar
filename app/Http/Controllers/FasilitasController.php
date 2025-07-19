@@ -9,11 +9,8 @@ use App\Models\Fasilitas;
 class FasilitasController extends Controller
 {
 public function show()
-    {
-        // Ambil data pertama (misalnya hanya ada 1 visi misi)
-        $data = Fasilitas::first();
-
-        // Arahkan ke resources/views/visimisi.blade.php
-        return view('fasilitas', compact('data'));
-    }
+{
+    $fasilitas = Fasilitas::all(); // ambil semua fasilitas
+    return view('fasilitas', compact('fasilitas')); // kirim dengan nama $fasilitas
+}
 }

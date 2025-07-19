@@ -66,6 +66,9 @@ return new class extends Migration
             $table->string('foto_kk')->nullable();
             $table->string('foto_akte')->nullable();
             
+           $table->unsignedBigInteger('kelas_id')->nullable();
+
+
             $table->timestamps();
         });
     }

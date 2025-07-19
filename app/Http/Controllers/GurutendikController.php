@@ -9,7 +9,7 @@ class GurutendikController extends Controller
     public function show()
     {
         // Ambil data pertama (misalnya hanya ada 1 visi misi)
-        $data = Gurutendik::first();
+        $data = Gurutendik::all();
 
         // Arahkan ke resources/views/visimisi.blade.php
         return view('guru-tendik', compact('data'));

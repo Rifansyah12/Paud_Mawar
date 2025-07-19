@@ -13,4 +13,13 @@ class CalonSiswaController extends Controller
         $calonSiswa = Pendaftaran::where('status', 'Menunggu')->get();
         return view('pengelola.calon_siswa.index', compact('calonSiswa'));
     }
+    public function update($id)
+    {
+        $siswa = Pendaftaran::findOrFail($id);
+        $siswa->status = 'Dikonfirmasi';
+        $siswa->save();
+
+        return redirect()->route('pengelola.data_siswa_baru')->with('success', 'Siswa berhasil dikonfirmasi.');
+    }
+
 }

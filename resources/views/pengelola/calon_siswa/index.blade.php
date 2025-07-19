@@ -39,7 +39,7 @@
         <td>{{ $siswa->jenis_kelamin }}</td>
         <td> 
             @if ($siswa->status === 'Menunggu')
-                <form action="{{ route('pengelola.data_siswa_baru.index', $siswa->id) }}" method="POST" style="display: inline;">
+                <form action="{{ route('pengelola.calon_siswa.konfirmasi', $siswa->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <button type="submit" class="btn btn-warning btn-sm">Konfirmasi</button>

@@ -33,7 +33,7 @@
         </a>
         <div class="dropdown-menu">
           <a class="dropdown-item {{ Request::is('visi-misi') ? 'active' : '' }}" href="{{ url('visi-misi') }}">Visi dan Misi</a>
-          <a class="dropdown-item {{ Request::is('fasilitas') ? 'active' : '' }}" href="{{ url('fasilitas') }}">Fasilitas</a>
+          <a class="dropdown-item {{ Request::is('fasilitas') ? 'active' : '' }}" href="{{ url('/fasilitas') }}">Fasilitas</a>
           <a class="dropdown-item {{ Request::is('ekstrakulikuler') ? 'active' : '' }}" href="{{ url('ekstrakulikuler') }}">Ekstrakulikuler</a>
           <a class="dropdown-item {{ Request::is('guru-tendik') ? 'active' : '' }}" href="{{ url('guru-tendik') }}">Guru dan Tendik</a>
         </div>

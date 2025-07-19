@@ -66,4 +66,10 @@ class Pendaftaran extends Model
         'foto_kk',
         'foto_akte',
     ];
+
+        // Model Siswa
+    public function Kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
 }

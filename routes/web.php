@@ -10,10 +10,13 @@ use App\Http\Controllers\Admin\AdminFasilitasController;
 use App\Http\Controllers\Admin\AdminVisimisController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\KesiswaanController;
+use App\Http\Controllers\FasilitasController;
+use App\Http\Controllers\EkstrakulikulerController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\AdminCalonSiswaController;
 use App\Http\Controllers\VisimisiController;
+use App\Http\Controllers\GurutendikController;
 use App\Models\Pendaftaran;
 use App\Http\Middleware\RoleMiddleware;
 
@@ -41,21 +44,15 @@ Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
 
 Route::get('/kesiswaan', [KesiswaanController::class, 'index'])->name('kesiswaan.index');
 Route::get('/kesiswaan/{id}', [KesiswaanController::class, 'show'])->name('kesiswaan.show');
-
+Route::get('/fasilitas', [FasilitasController::class, 'show']);
+Route::get('/ekstrakulikuler', [EkstrakulikulerController::class, 'show']);
+Route::get('/guru-tendik', [GurutendikController::class, 'show']);
 
     // Galeri
     Route::get('/foto', [GaleriController::class, 'foto'])->name('galeri.foto');
     Route::get('/video', [GaleriController::class, 'video'])->name('galeri.video');
     // Visi-misi
     Route::get('/visi-misi', [VisimisiController::class, 'show']);
-    Route::get('/fasilitas', function () {
-        return view('fasilitas');
-    });
-    Route::get('/ekstrakulikuler', function () {
-        return view('ekstrakulikuler');
-    });Route::get('/guru-tendik', function () {
-        return view('guru-tendik');
-    });
 
 // Pendaftaran
 // Menampilkan daftar pendaftar
@@ -166,9 +163,27 @@ Route::middleware(['auth', RoleMiddleware::class . ':pengelola'])->group(functio
 
 
 
+
+
 Route::middleware(['web', 'auth', RoleMiddleware::class.':pengelola'])->prefix('pengelola')->group(function () {
     Route::get('/calon_siswa', [CalonSiswaController::class, 'index'])->name('pengelola.calon_siswa');
     Route::get('/data_siswa_baru', [DataSiswaBaruController::class, 'index'])->name('pengelola.data_siswa_baru');
+    Route::post('/data_siswa_baru/{id}/masukkan-kelas', [DataSiswaBaruController::class, 'masukkanKelas'])->name('pengelola.data_siswa_baru.masuk_kelas');
+    Route::put('calon_siswa/{id}/konfirmasi', [CalonSiswaController::class, 'update'])->name('pengelola.calon_siswa.konfirmasi');
+  
+    // Data kelas
+    Route::get('/data-kelas', [DataKelasController::class, 'index'])->name('kelas.index');
     Route::get('/data_kelas', [DataKelasController::class, 'index'])->name('pengelola.data_kelas');
+    Route::post('/kelas', [DataKelasController::class, 'store'])->name('kelas.store');
+    Route::put('/kelas/{id}', [DataKelasController::class, 'update'])->name('kelas.update');
+    Route::delete('/kelas/{id}', [DataKelasController::class, 'destroy'])->name('kelas.destroy');
+
+    Route::put('/siswa/{id}/update-kelas', [DataSiswaBaruController::class, 'updateKelas'])->name('siswa.update.kelas');
+    Route::get('/kelas/{id}/export-siswa', [DataKelasController::class, 'exportSiswa'])->name('kelas.export.siswa');
+
+
+
+
+
     Route::get('/laporan', [LaporanController::class, 'index'])->name('pengelola.laporan');
 });

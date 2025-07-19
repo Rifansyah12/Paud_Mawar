@@ -3,9 +3,9 @@
   <a href="{{ route('dashboard') }}" class="active">
     <i class="fas fa-tachometer-alt mr-2"></i> Beranda
   </a>
-  <a href="{{ route('admin.calon_siswa.index') }}">
+  <!-- <a href="{{ route('admin.calon_siswa.index') }}">
   <i class="fas fa-child mr-2"></i> Calon Siswa
-  </a>
+  </a> -->
   <div class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#submenu-profile" aria-expanded="false" aria-controls="submenu-profile">
       <i class="fas fa-user mr-2"></i> Profile
@@ -32,9 +32,10 @@
     </div>
   </div>
   <a href="kritik-testimoni.html"><i class="fas fa-comment-dots mr-2"></i> Kritik (Testimoni)</a>
-  <a href="{{ route('admin.kelola_siswa_baru') }}">
+
+  <!-- <a href="{{ route('admin.kelola_siswa_baru') }}">
     <i class="fas fa-file-alt mr-2"></i> Kelola Siswa Baru
-</a>
+</a> -->
     <form action="{{ route('logout') }}" method="POST" style="margin:0; padding:0;">
     @csrf
    <button><i class="fas fa-sign-out-alt mr-2"></i> Logout</button>
