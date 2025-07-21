@@ -9,7 +9,8 @@ class CalonSiswaExport implements FromCollection, WithHeadings
 {
     public function collection()
     {
-        return Pendaftaran::select(
+        return Pendaftaran::where('status', 'Dikonfirmasi') // hanya siswa yang dikonfirmasi
+        ->select(
             'tanggal_daftar',
             'nama_lengkap',
             'jenis_kelamin',

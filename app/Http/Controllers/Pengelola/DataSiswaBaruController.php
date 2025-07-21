@@ -29,6 +29,29 @@ class DataSiswaBaruController extends Controller
         return redirect()->back()->with('success', 'Siswa berhasil dimasukkan ke kelas.');
     }
 
+    public function destroy($id)
+    {
+        $siswa = Pendaftaran::findOrFail($id);
+        $siswa->delete();
+
+        return redirect()->back()->with('success', 'Data siswa berhasil dihapus.');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $siswa = Pendaftaran::findOrFail($id);
+        $siswa->update($request->all());
+
+        return redirect()->back()->with('success', 'Data siswa berhasil diperbarui.');
+    }
+
+    public function edit($id)
+    {
+        $siswa = Pendaftaran::findOrFail($id);
+        $kelas = Kelas::all(); // jika kamu ingin juga mengubah kelas
+
+        return view('pengelola.data_siswa_baru.edit', compact('siswa', 'kelas'));
+    }
 
 
 }

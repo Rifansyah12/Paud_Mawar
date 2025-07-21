@@ -17,6 +17,8 @@ use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\AdminCalonSiswaController;
 use App\Http\Controllers\VisimisiController;
 use App\Http\Controllers\GurutendikController;
+use App\Http\Controllers\KontakController;
+
 use App\Models\Pendaftaran;
 use App\Http\Middleware\RoleMiddleware;
 
@@ -47,6 +49,7 @@ Route::get('/kesiswaan/{id}', [KesiswaanController::class, 'show'])->name('kesis
 Route::get('/fasilitas', [FasilitasController::class, 'show']);
 Route::get('/ekstrakulikuler', [EkstrakulikulerController::class, 'show']);
 Route::get('/guru-tendik', [GurutendikController::class, 'show']);
+Route::get('/kontak',[KontakController::class,'show']);
 
     // Galeri
     Route::get('/foto', [GaleriController::class, 'foto'])->name('galeri.foto');
@@ -105,6 +108,15 @@ Route::post('/admin/galeri/foto', [GaleriController::class, 'storeFoto'])->name(
 Route::get('/admin/galeri/foto/{id}/edit', [GaleriController::class, 'editFoto'])->name('galeri.edit');
 Route::put('/admin/galeri/foto/{id}', [GaleriController::class, 'updateFoto'])->name('galeri.update');
 Route::delete('/admin/galeri/foto/{id}', [GaleriController::class, 'destroy'])->name('galeri.destroy');
+// Admin kelola Galeri Vidio
+Route::prefix('admin/galeri')->group(function () {
+    Route::get('video', [GaleriController::class, 'Adminvideo'])->name('admin.galeri.video');
+    Route::get('video/create', [GaleriController::class, 'createVideo'])->name('admin.galeri.video.create');
+    Route::post('video', [GaleriController::class, 'storeVideo'])->name('admin.galeri.video.store');
+    Route::get('video/{id}/edit', [GaleriController::class, 'editVideo'])->name('admin.galeri.video.edit');
+    Route::put('video/{id}', [GaleriController::class, 'updateVideo'])->name('admin.galeri.video.update');
+    Route::delete('video/{id}', [GaleriController::class, 'destroyVideo'])->name('admin.galeri.video.destroy');
+});
 
 
 Route::get('/admin/berita', [AdminBeritaController::class, 'index'])->name('admin.berita.index');
@@ -139,7 +151,7 @@ Route::delete('/admin/kesiswaan/{id}', [AdminKesiswaanController::class, 'destro
 // })->name('admin.gurutendik');
 // Untuk pengunjung
 Route::get('/visimisi', [VisiMisiController::class, 'show']);
-
+Route::get('/', [GaleriController::class, 'landing'])->name('welcome');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('visimisi', AdminVisimisController::class);
@@ -168,6 +180,8 @@ Route::middleware(['auth', RoleMiddleware::class . ':pengelola'])->group(functio
 Route::middleware(['web', 'auth', RoleMiddleware::class.':pengelola'])->prefix('pengelola')->group(function () {
     Route::get('/calon_siswa', [CalonSiswaController::class, 'index'])->name('pengelola.calon_siswa');
     Route::get('/data_siswa_baru', [DataSiswaBaruController::class, 'index'])->name('pengelola.data_siswa_baru');
+    Route::put('/data_siswa_baru/{id}', [DataSiswaBaruController::class, 'update'])->name('pengelola.data_siswa_baru.update');
+    Route::delete('/data_siswa_baru/{id}',[DataSiswaBaruController::class, 'destroy'])->name('pengelola.data_siswa_baru.destroy');
     Route::post('/data_siswa_baru/{id}/masukkan-kelas', [DataSiswaBaruController::class, 'masukkanKelas'])->name('pengelola.data_siswa_baru.masuk_kelas');
     Route::put('calon_siswa/{id}/konfirmasi', [CalonSiswaController::class, 'update'])->name('pengelola.calon_siswa.konfirmasi');
   

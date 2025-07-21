@@ -1,9 +1,12 @@
 <nav
   class="navbar navbar-expand-lg navbar-dark bg-dark ftco_navbar ftco-navbar-light"
-  id="ftco-navbar"
->
+  id="ftco-navbar">
   <div class="container d-flex align-items-center">
-    <a class="navbar-brand" href="{{ url('/') }}">Paud Mawar</a>
+    <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }} "style="color: #666666;">
+    <img src="{{ asset('images/logo/logo.jpeg') }}" alt="Logo" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; margin-right: 10px;">
+    Paud Mawar
+    </a>
+
     <button
       class="navbar-toggler"
       type="button"

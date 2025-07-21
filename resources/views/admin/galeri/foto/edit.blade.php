@@ -17,7 +17,6 @@
     <form action="{{ route('galeri.update', $galeri->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-
         <div class="form-group">
             <label for="file">Gambar</label><br>
             <img src="{{ asset('storage/' . $galeri->file) }}" width="150" alt="Preview"><br><br>
@@ -31,7 +30,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Perbarui</button>
-        <a href="{{ route('galeri.foto') }}" class="btn btn-secondary">Kembali</a>
+        <a href="{{ route('admin.galeri.foto') }}" class="btn btn-secondary">Kembali</a>
     </form>
 </div>
 @endsection
