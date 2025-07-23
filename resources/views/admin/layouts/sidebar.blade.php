@@ -31,7 +31,7 @@
       <a href="{{ route('admin.galeri.video') }}" class="pl-4 d-block text-white">Kelola Video</a>
     </div>
   </div>
-  <a href="kritik-testimoni.html"><i class="fas fa-comment-dots mr-2"></i> Kritik (Testimoni)</a>
+
 
   <!-- <a href="{{ route('admin.kelola_siswa_baru') }}">
     <i class="fas fa-file-alt mr-2"></i> Kelola Siswa Baru

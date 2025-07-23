@@ -18,6 +18,8 @@ use App\Http\Controllers\AdminCalonSiswaController;
 use App\Http\Controllers\VisimisiController;
 use App\Http\Controllers\GurutendikController;
 use App\Http\Controllers\KontakController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LandingController;
 
 use App\Models\Pendaftaran;
 use App\Http\Middleware\RoleMiddleware;
@@ -28,9 +30,7 @@ use App\Http\Controllers\Pengelola\DataSiswaBaruController;
 use App\Http\Controllers\Pengelola\DataKelasController;
 use App\Http\Controllers\Pengelola\LaporanController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [GaleriController::class, 'landing']);
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
@@ -162,9 +162,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 // Role Actor
 Route::middleware(['auth', RoleMiddleware::class . ':admin'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard.index');
-    });
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 });
 
 Route::middleware(['auth', RoleMiddleware::class . ':pengelola'])->group(function () {

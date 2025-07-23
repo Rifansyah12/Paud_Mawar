@@ -3,26 +3,24 @@
         <div class="row mb-5">
           <div class="col-md-6 col-lg-3">
             <div class="ftco-footer-widget mb-5">
-              <h2 class="ftco-heading-2">Have a Questions?</h2>
               <div class="block-23 mb-3">
                 <ul>
                   <li>
                     <span class="icon icon-map-marker"></span
                     ><span class="text"
-                      >203 Fake St. Mountain View, San Francisco, California,
-                      USA</span
+                      >2MQ2+RQQ, Jl. Margawangi VIII, Cijaura, Kec. Buahbatu, Kota Bandung, Jawa Barat 40287</span
                     >
                   </li>
                   <li>
                     <a href="#"
                       ><span class="icon icon-phone"></span
-                      ><span class="text">+2 392 3929 210</span></a
+                      ><span class="text">+62 815‑7373‑8434</span></a
                     >
                   </li>
                   <li>
                     <a href="#"
                       ><span class="icon icon-envelope"></span
-                      ><span class="text">info@yourdomain.com</span></a
+                      ><span class="text">paudmawar13bdg@gmail.com</span></a
                     >
                   </li>
                 </ul>

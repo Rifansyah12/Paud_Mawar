@@ -80,22 +80,22 @@
       <div class="row mt-4">
         <div class="col-md-4">
           <div class="card bg-info text-white p-3">
-            <h5><i class="fas fa-user-graduate mr-2"></i> Jumlah Siswa</h5>
-            <h3>120</h3>
+            <h5><i class="fas fa-user-graduate mr-2"></i> Jumlah Perstasi</h5>
+            <h3>{{ $jumlahPrestasi }}</h3>
           </div>
         </div>
         <div class="col-md-4">
           <div class="card bg-success text-white p-3">
             <h5>
-              <i class="fas fa-chalkboard-teacher mr-2"></i> Jumlah Guru
+              <i class="fas fa-chalkboard-teacher mr-2"></i> Jumlah Vidio
             </h5>
-            <h3>12</h3>
+            <h3>{{ $jumlahVideo }}</h3>
           </div>
         </div>
         <div class="col-md-4">
           <div class="card bg-warning text-white p-3">
             <h5><i class="fas fa-image mr-2"></i> Jumlah Foto</h5>
-            <h3>54</h3>
+            <h3>{{ $jumlahFoto }}</h3>
           </div>
         </div>
       </div>

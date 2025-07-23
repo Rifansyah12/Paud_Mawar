@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Galeri;
+use App\Models\Gurutendik;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -10,15 +11,16 @@ class GaleriController extends Controller
 {
     public function foto()
     {
-        $galeri = Galeri::paginate(3);
+        $galeri = Galeri::where('tipe', 'foto')->latest()->paginate(6);
         return view('galeri.foto.index', compact('galeri'));
     }
 
     public function video()
     {
-        $galeri = Galeri::where('tipe', 'video')->get();
+        $galeri = Galeri::where('tipe', 'video')->paginate(6); // atau jumlah yang kamu mau
         return view('galeri.video.index', compact('galeri'));
     }
+
 
     public function Adminfoto()
     {
@@ -160,7 +162,9 @@ class GaleriController extends Controller
     public function landing()
     {
         $galeri = Galeri::where('tipe', 'foto')->latest()->take(4)->get();
-        return view('welcome', compact('galeri'));
+        $guru = Gurutendik::all();
+
+        return view('welcome', compact('galeri', 'guru'));
     }
 
 }

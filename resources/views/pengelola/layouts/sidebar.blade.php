@@ -25,11 +25,6 @@
                 Data Kelas
             </a>
         </li>
-        <li>
-            <a href="#" class="nav-link text-white">
-                Laporan
-            </a>
-        </li>
     </ul>
     <hr>
     <div>
